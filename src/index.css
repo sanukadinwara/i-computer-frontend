@@ -1,13 +1,7 @@
 @import "tailwindcss";
 
-.bg-red{
-  background-color: red;
-}
-
-.black-border{
-  border: 6px solid black;
-}
-
-.width-200{
-  width: 200px;
+@theme{
+  --color-primary: #ffffff;
+  --color-secondary: #0a0a0a;
+  --color-accent: #f85606;
 }
