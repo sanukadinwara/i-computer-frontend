@@ -119,7 +119,7 @@ export default function AddProductPage(){
                 </select>
             </div>
             <div className="w-full h-[80px] sticky bottom-0 bg-secondary flex justify-end items-center p-4 gap-4 shadow-2xl">
-                <button className="bg-gray-400 text-white font-bold px-6 py-3 rounded-[10px] hover:bg-gray-500">Cancel</button>
+                <button onClick={() => navigate("/admin")} className="bg-gray-400 text-white font-bold px-6 py-3 rounded-[10px] hover:bg-gray-500">Cancel</button>
                 <button onClick={handleAddProduct} className="bg-accent text-white font-bold px-6 py-3 rounded-[10px] hover:bg-secondary">Add Product</button>
                 
             </div>
