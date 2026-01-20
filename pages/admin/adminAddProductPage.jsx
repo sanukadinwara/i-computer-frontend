@@ -15,6 +15,7 @@ export default function AddProductPage(){
     const [productBrand , setProductBrand] = useState("");
     const [productModel , setProductModel] = useState("");
     const [isVisible , setIsVisible] = useState("true");
+    const [files , setFiles] = useState([]);
     const navigate = useNavigate();
 
     async function handleAddProduct(){
@@ -27,6 +28,16 @@ export default function AddProductPage(){
                 window.location.href = "/login";
                 return;
             }
+
+            const fileUploadPromises = [];
+
+            for(let i=0; i<files.length; i++){
+                fileUploadPromises[i] = uploadFile(file[i])
+            }
+
+            const imageURLs = await Promise.all(fileUploadPromises);
+            console.log(results); 
+
             await axios.post(import.meta.env.VITE_API_URL + "/products" , {
                 productId : productId,
                 productName : productName,
@@ -34,6 +45,7 @@ export default function AddProductPage(){
                 price : price,
                 labeledPrice : labeledPrice,
                 altNames : altNames.split(", "),
+                images : imageURLs,
                 category : category,
                 productBrand : productBrand,
                 productModel : productModel,
@@ -117,6 +129,11 @@ export default function AddProductPage(){
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
+            </div>
+            <div className="w-[40%] h-[10%] flex flex-col">
+                <label className="font-bold ml-2 text-white">Images</label>
+                <input multiple type="file" onChange={(e)=>{setFiles(e.target.files)}} className="border-4 border-accent text-white text-primary rounded-[10px] h-[50px] p-2 m-2 outline-none">
+                </input>
             </div>
             <div className="w-full h-[80px] sticky bottom-0 bg-secondary flex justify-end items-center p-4 gap-4 shadow-2xl">
                 <button onClick={() => navigate("/admin")} className="bg-gray-400 text-white font-bold px-6 py-3 rounded-[10px] hover:bg-gray-500">Cancel</button>

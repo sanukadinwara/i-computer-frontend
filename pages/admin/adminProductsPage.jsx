@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -93,13 +94,22 @@ export default function AdminProductsPage(){
             isVisible: true
         }
     ]);
+
+    const token = localStorage.getItem("adminToken");
+    axios.get(import.meta.env.VITE_API_URL + "/products", {
+    headers: {
+        Authorization: "Bearer "+token
+    }
+    }).then((response)=>{
+        setProducts(response.data);
+    });
     
     return(
         <div className="w-full h-full overflow-visible">
                           
         <div className="w-full bg-[var(--color-primary)] p-4 rounded-xl shadow-sm bg-white">
-    <div className="overflow-x-auto bg-white rounded-xl">
-    <table className="min-w-[1100px] w-full relative">
+        <div className="overflow-x-auto bg-white rounded-xl">
+        <table className="min-w-[1100px] w-full relative">
         <thead className="sticky top-0 z-10 bg-accent/80">
         <tr className="border-b border-secondary/10">
             <th className="px-4 py-3 text-left text-sm font-semibold border-0">
