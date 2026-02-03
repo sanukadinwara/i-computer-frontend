@@ -6,6 +6,8 @@ import { IoMdPricetag } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import AdminProductsPage from "./admin/adminProductsPage.jsx";
 import AddProductPage from "./admin/adminAddProductPage.jsx";
+import AdminUpdateProductPage from "./admin/adminUpdateProductPage.jsx";
+import AdminAddProductPage from "./admin/adminAddProductPage.jsx";
 
 export default function AdminPage(){
     return(
@@ -25,7 +27,8 @@ export default function AdminPage(){
                     <Route path="/" element={<h1>Orders Page</h1>}/>
                     <Route path="/products" element={<AdminProductsPage/>}/>
                     <Route path="/users" element={<h1>Users Page</h1>}/>
-                    <Route path="/add-product" element={<AddProductPage/>}/>
+                    <Route path="/add-product" element={<AdminAddProductPage/>}/>
+                    <Route path="/update-product" element={<AdminUpdateProductPage/>}/>
                     
                 </Routes>
             </div>

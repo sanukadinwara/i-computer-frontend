@@ -1,24 +1,25 @@
 import { useState } from "react"
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function AdminAddProductPage(){
+export default function AdminUpdateProductPage(){
 
-    const [productId , setProductId] = useState("");
-    const [productName , setProductName] = useState("");
-    const [description , setDescription] = useState("");
-    const [altNames , setAltNames] = useState("");
-    const [price , setPrice] = useState(""); 
-    const [labeledPrice , setLabeledPrice] = useState("");
-    const [category , setCategory] = useState("Others");   
-    const [productBrand , setProductBrand] = useState("");
-    const [productModel , setProductModel] = useState("");
-    const [isVisible , setIsVisible] = useState("true");
+    const location = useLocation()
+    const [productId , setProductId] = useState(location.state?.productId);
+    const [productName , setProductName] = useState(location.state?.name);
+    const [description , setDescription] = useState(location.state?.description);
+    const [altNames , setAltNames] = useState(location.state?.altNames?.join(","))||"";
+    const [price , setPrice] = useState(location.state?.price); 
+    const [labeledPrice , setLabeledPrice] = useState(location.state?.labeledPrice);
+    const [category , setCategory] = useState(location.state?.category);   
+    const [productBrand , setProductBrand] = useState(location.state?.productBrand);
+    const [productModel , setProductModel] = useState(location.state?.productModel);
+    const [isVisible , setIsVisible] = useState(location.state?.isVisible);
     const [files , setFiles] = useState([]);
     const navigate = useNavigate();
 
-    async function handleAddProduct(){
+    async function handleUpdateProduct(){
         try{
 
             const token = localStorage.getItem("token");
@@ -35,11 +36,14 @@ export default function AdminAddProductPage(){
                 fileUploadPromises[i] = uploadFile(file[i])
             }
 
-            const imageURLs = await Promise.all(fileUploadPromises);
+            let imageURLs = await Promise.all(fileUploadPromises);
             console.log(results); 
 
-            await axios.post(import.meta.env.VITE_API_URL + "/products" , {
-                productId : productId,
+            if(imageURLs.length == null){
+                imageURLs = location.state.images
+            }
+
+            await axios.put(import.meta.env.VITE_API_URL + "/products" + productId , {
                 productName : productName,
                 description : description,
                 price : price,
@@ -56,20 +60,20 @@ export default function AdminAddProductPage(){
                 }
             })
 
-            toast.success("Product added successfully");
+            toast.success("Product updated successfully");
             navigate("/admin/products");
         }catch(err){
-            toast.error(err?.response?.data?.message || "Failed to add product");
+            toast.error(err?.response?.data?.message || "Failed to update product");
             return;
         }
     }
 
     return(
         <div className="w-full h-full flex flex-wrap items-start gap-y-[20px] overflow-y-scroll hide-scroll-track">
-            <h1 className="w-full h-[45px] text-3xl font-bold mb-4 text-accent sticky top-0 bg-secondary">Add New Product</h1>
+            <h1 className="w-full h-[45px] text-3xl font-bold mb-4 text-accent sticky top-0 bg-secondary">Edit Product</h1>
             <div className="w-[35%] h-[10%] flex flex-col">
                 <label className="font-bold text-white ml-2">Product ID</label>
-                <input value={productId} onChange={(e)=>{setProductId(e.target.value)}} placeholder="Ex: ID0001" className="border-4 border-accent text-primary rounded-[10px] h-[50px] p-2 m-2 flex-1 outline-none"/>
+                <input value={productId} disabled onChange={(e)=>{setProductId(e.target.value)}} placeholder="Ex: ID0001" className="border-4 border-accent text-primary rounded-[10px] h-[50px] p-2 m-2 flex-1 outline-none"/>
             </div>
             <div className="w-[65%] h-[10%] flex flex-col">
                 <label className="font-bold text-white ml-2">Product Name</label>
@@ -137,7 +141,7 @@ export default function AdminAddProductPage(){
             </div>
             <div className="w-full h-[80px] sticky bottom-0 bg-secondary flex justify-end items-center p-4 gap-4 shadow-2xl">
                 <button onClick={() => navigate("/admin")} className="bg-gray-400 text-white font-bold px-6 py-3 rounded-[10px] hover:bg-gray-500">Cancel</button>
-                <button onClick={handleAddProduct} className="bg-accent text-white font-bold px-6 py-3 rounded-[10px] hover:bg-secondary">Add Product</button>
+                <button onClick={handleUpdateProduct} className="bg-accent text-white font-bold px-6 py-3 rounded-[10px] hover:bg-secondary">Update Product</button>
                 
             </div>
         </div>
