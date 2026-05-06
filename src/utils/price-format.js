@@ -1,7 +1,7 @@
 export default function getFormattedPrice(price){
     
     if(price == null){
-        return "N/A"
+        return "Rs. 0.00"
     }
 
     const priceInNumber = Number(price); 
@@ -9,6 +9,6 @@ export default function getFormattedPrice(price){
     if(isNaN(priceInNumber)){
         return "N/A"
     }else{
-        return "LKR" + priceInNumber.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        return "LKR " + priceInNumber.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2})
     }
 }

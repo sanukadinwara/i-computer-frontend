@@ -1,9 +1,17 @@
 @import "tailwindcss";
 
-@theme{
+@theme {
   --color-primary: #ffffff;
   --color-secondary: #0f0f0f;
-  --color-accent: #009fd2;
+}
+
+@utility bg-accent {
+  background-image: linear-gradient(135deg, #E30B6F 0%, #8a00c4 100%);
+}
+
+/* Glow Effect */
+@utility accent-glow {
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.4), 0 0 30px rgba(188, 19, 254, 0.2);
 }
 
 /*transparent scroll track class called hide-scroll-track*/

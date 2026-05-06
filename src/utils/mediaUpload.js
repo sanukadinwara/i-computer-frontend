@@ -1,35 +1,35 @@
 import { createClient } from "@supabase/supabase-js";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkZ3V3dWVmcG5iZHhzd3R6cGlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg4MTQyNzYsImV4cCI6MjA4NDM5MDI3Nn0._bjjnm_cdAEkr4JYDUQ9qVxzzoPsU_La-RJVuhh36s0"
-const supabaseUrl = "https://rdguwuefpnbdxswtzpir.supabase.co"
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 
 
 const supabase = createClient(supabaseUrl, supabaseKey)
 
-export default function uploadFile(file){
-    return new Promise(
-        (resolve, reject)=>{
-            if(file == null){
-                reject ("No file provided")
-                return
-            }
+export default async function uploadFile(file, folderName = "general") {
+    try {
+        const fileName = `${Date.now()}-${file.name.replace(/\s+/g, '-')}`;
 
-            const timeStamp = new Date().getTime()
-            const fileName = timeStamp + "-"+file.name
+        const filePath = `${folderName}/${fileName}`;
+        
+        const { data, error } = await supabase.storage
+            .from('images')
+            .upload(filePath, file, {
+                cacheControl: '3600',
+                upsert: false
+            });
 
-            supabase.storage.from("images").upload(fileName, file, {
-                upsert : false,
-                cacheControl : 3600
-            }).then(
-                ()=>{
-                    const url = supabase.storage.from("images").getPublicUrl(fileName).data.publicUrl
-                    resolve(url)
-                }
-            ).catch(
-                ()=>{
-                    reject("Failed to upload file")
-                }
-            )
-            
+        if (error) {
+            throw error;
         }
-    )
+
+        const { data: publicUrlData } = supabase.storage
+            .from('images')
+            .getPublicUrl(filePath);
+
+        return publicUrlData.publicUrl;
+
+    } catch (error) {
+        console.error("Error uploading file:", error);
+        return null;
+    }
 }

@@ -2,6 +2,7 @@ import { useState } from "react"
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import uploadFile from "../../src/utils/mediaUpload.js";
 
 export default function AdminAddProductPage(){
 
@@ -14,12 +15,20 @@ export default function AdminAddProductPage(){
     const [category , setCategory] = useState("Others");   
     const [productBrand , setProductBrand] = useState("");
     const [productModel , setProductModel] = useState("");
-    const [isVisible , setIsVisible] = useState("true");
+    const [isVisible , setIsVisible] = useState("Yes");
     const [files , setFiles] = useState([]);
     const navigate = useNavigate();
 
     async function handleAddProduct(){
         try{
+            if(productName === ""){
+                toast.error("Product name cannot be empty");
+            return;
+            }
+            if(description == ""){
+                toast.error("Product description cannot be empty");
+                return;
+            }
 
             const token = localStorage.getItem("token");
 
@@ -32,41 +41,43 @@ export default function AdminAddProductPage(){
             const fileUploadPromises = [];
 
             for(let i=0; i<files.length; i++){
-                fileUploadPromises[i] = uploadFile(file[i])
+                fileUploadPromises[i] = uploadFile(files[i]) 
             }
 
             const imageURLs = await Promise.all(fileUploadPromises);
-            console.log(results); 
+            
+            console.log(imageURLs); 
 
             await axios.post(import.meta.env.VITE_API_URL + "/products" , {
                 productId : productId,
-                productName : productName,
+                name : productName,
                 description : description,
-                price : price,
-                labeledPrice : labeledPrice,
-                altNames : altNames.split(", "),
-                images : imageURLs,
+                price : Number(price), 
+                labeledPrice : Number(labeledPrice), 
                 category : category,
-                productBrand : productBrand,
-                productModel : productModel,
-                isVisible : isVisible
+                image : imageURLs, 
+                brand : productBrand,
+                model : productModel,
+                isVisible : isVisible === "Yes" ? true : false,
+                altNames : altNames.split(", "),
             },{
                 headers: {
-                    Authorization : "Bearer"+token
+                    Authorization : `Bearer ${token}` 
                 }
             })
 
             toast.success("Product added successfully");
             navigate("/admin/products");
-        }catch(err){
-            toast.error(err?.response?.data?.message || "Failed to add product");
+        } catch(error) { 
+            toast.error(error?.response?.data?.message || "Failed to add product");
+            console.log("Error from Backend:", error?.response?.data?.message || error?.response?.data);
             return;
         }
     }
 
     return(
         <div className="w-full h-full flex flex-wrap items-start gap-y-[20px] overflow-y-scroll hide-scroll-track">
-            <h1 className="w-full h-[45px] text-3xl font-bold mb-4 text-accent sticky top-0 bg-secondary">Add New Product</h1>
+            <h1 className="w-full h-[45px] text-3xl font-bold mb-4 bg-accent bg-clip-text text-transparent sticky top-0">Add New Product</h1>
             <div className="w-[35%] h-[10%] flex flex-col">
                 <label className="font-bold text-white ml-2">Product ID</label>
                 <input value={productId} onChange={(e)=>{setProductId(e.target.value)}} placeholder="Ex: ID0001" className="border-4 border-accent text-primary rounded-[10px] h-[50px] p-2 m-2 flex-1 outline-none"/>
@@ -85,7 +96,7 @@ export default function AdminAddProductPage(){
             </div>
             <div className="w-[30%] h-[10%] flex flex-col">
                 <label className="font-bold text-white ml-2">Price</label>
-                <input value={price} onChange={(e)=>{setPrice(e.target.value)}} placeholder="Ex: LKR 25,000" className="border-4 border-accent text-primary rounded-[10px] h-[50px] p-2 m-2 flex-1 outline-none"/>
+                <input value={price} onChange={(e)=>{setPrice(e.target.value)}} placeholder="Ex: LKR 50,000" className="border-4 border-accent text-primary rounded-[10px] h-[50px] p-2 m-2 flex-1 outline-none"/>
             </div>
             <div className="w-[30%] h-[10%] flex flex-col">
                 <label className="font-bold text-white ml-2">Labeled Price</label>
@@ -132,12 +143,12 @@ export default function AdminAddProductPage(){
             </div>
             <div className="w-[40%] h-[10%] flex flex-col">
                 <label className="font-bold ml-2 text-white">Images</label>
-                <input multiple type="file" onChange={(e)=>{setFiles(e.target.files)}} className="border-4 border-accent text-white text-primary rounded-[10px] h-[50px] p-2 m-2 outline-none">
+                <input multiple type="file" onChange={(e)=>{setFiles(Array.from(e.target.files))}} className="border-4 border-accent text-white cursor-pointer text-primary rounded-[10px] h-[50px] p-2 m-2 outline-none">
                 </input>
             </div>
             <div className="w-full h-[80px] sticky bottom-0 bg-secondary flex justify-end items-center p-4 gap-4 shadow-2xl">
-                <button onClick={() => navigate("/admin")} className="bg-gray-400 text-white font-bold px-6 py-3 rounded-[10px] hover:bg-gray-500">Cancel</button>
-                <button onClick={handleAddProduct} className="bg-accent text-white font-bold px-6 py-3 rounded-[10px] hover:bg-secondary">Add Product</button>
+                <button onClick={() => navigate("/admin")} className="bg-gray-400 text-white font-bold px-6 py-3 rounded-[10px] hover:bg-gray-500 cursor-pointer">Cancel</button>
+                <button onClick={handleAddProduct}className="bg-accent text-white font-bold px-6 py-3 rounded-[10px] hover:brightness-70 transition-all duration-300 active:scale-95 shadow-md hover:shadow-lg cursor-pointer">Add Product</button>
                 
             </div>
         </div>
