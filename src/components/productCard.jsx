@@ -10,7 +10,7 @@ export default function ProductCard(props) {
     const userEmail = user?.email;
     
     const getFormattedPrice = (price) => {
-        return "LKR " + price.toLocaleString();
+        return "Rs. " + price.toLocaleString();
     };
 
     return (

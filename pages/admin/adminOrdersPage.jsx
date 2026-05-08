@@ -38,7 +38,7 @@ export default function AdminOrdersPage(){
     }, [isLoaded, pageNumber, pageSize]);
 
     return(
-        <div className="w-full h-full overflow-y-scroll">
+        <div className="w-full h-full overflow-y-scroll pt-8 lg:pt-0">
 
             <div className="flex items-center justify-between gap-3 px-5 py-4 bg-primary/60 border-b border-secondary/10">
                 <div>
@@ -84,7 +84,7 @@ export default function AdminOrdersPage(){
                 </table>
             )}
             <div className="w-full absolute bottom-5 left-0 h-[50px] flex justify-center items-center">
-                <div className="w-[440px] h-full bg-white shadow-2xl rounded-full flex items-center justify-center px-2">
+                <div className="w-[420px] h-full bg-white shadow-2xl rounded-full flex items-center justify-center px-2">
                     
                     <button className="bg-accent text-white w-[90px] p-2 rounded-full cursor-pointer hover:bg-accent/80">
                         Previous
@@ -105,7 +105,7 @@ export default function AdminOrdersPage(){
                             setPageNumber(1); 
                             setIsLoaded(false); 
                         }}
-                        className="ml-5 border border-secondary/20 rounded px-3 py-2 text-sm cursor-pointer">
+                        className="ml-2 border border-secondary/20 rounded px-3 py-2 text-sm cursor-pointer">
                         <option value={5}>5 per page</option>
                         <option value={10}>10 per page</option>
                         <option value={20}>20 per page</option>

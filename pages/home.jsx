@@ -8,13 +8,14 @@ import MyOrdersPage from "../src/components/myOrders";
 import SettingsPage from "./settings";
 import AboutPage from "./aboutPage";
 import ContactPage from "./contactPage";
+import LandingPage from "./landingPage";
 
 export default function HomePage(){
     return(
         <div className="w-full h-screen overflow-y-scroll">
             <Header/>
             <Routes>
-                <Route path="/" element={<div>Home Page Content</div>}/>
+                <Route path="/" element={<LandingPage/>}/>
                 <Route path="/about" element={<AboutPage/>}/>
                 <Route path="/contact" element={<ContactPage/>}/>
                 <Route path="/products" element={<ProductPage/>}/>

@@ -74,8 +74,8 @@ export default function AdminUpdateProductPage(){
     }
 
     return(
-        <div className="w-full h-full flex flex-wrap items-start gap-y-[20px] overflow-y-scroll hide-scroll-track">
-            <h1 className="w-full h-[45px] text-3xl font-bold mb-4 bg-accent bg-clip-text text-transparent sticky top-0">Edit Product</h1>
+        <div className="w-full h-full bg-secondary text-primary rounded-3xl flex flex-wrap items-start gap-y-[20px] overflow-y-scroll pt-10 lg:pt-5 hide-scroll-track">
+            <h1 className="w-full h-[45px] text-3xl font-bold mb-4 pl-4 pt-3 bg-accent bg-clip-text text-transparent sticky top-0">Edit Product</h1>
             <div className="w-[35%] h-[10%] flex flex-col">
                 <label className="font-bold text-white ml-2">Product ID</label>
                 <input value={productId} disabled onChange={(e)=>{setProductId(e.target.value)}} placeholder="Ex: ID0001" className="border-4 border-accent text-primary rounded-[10px] h-[50px] p-2 m-2 flex-1 outline-none"/>
@@ -94,11 +94,11 @@ export default function AdminUpdateProductPage(){
             </div>
             <div className="w-[30%] h-[10%] flex flex-col">
                 <label className="font-bold text-white ml-2">Price</label>
-                <input value={price} onChange={(e)=>{setPrice(e.target.value)}} placeholder="Ex: LKR 25,000" className="border-4 border-accent text-primary rounded-[10px] h-[50px] p-2 m-2 flex-1 outline-none"/>
+                <input value={price} onChange={(e)=>{setPrice(e.target.value)}} placeholder="Ex: Rs. 25,000" className="border-4 border-accent text-primary rounded-[10px] h-[50px] p-2 m-2 flex-1 outline-none"/>
             </div>
             <div className="w-[30%] h-[10%] flex flex-col">
                 <label className="font-bold text-white ml-2">Labeled Price</label>
-                <input value={labeledPrice} onChange={(e)=>{setLabeledPrice(e.target.value)}} placeholder="Ex: LKR 25,000" className="border-4 border-accent text-primary rounded-[10px] h-[50px] p-2 m-2 flex-1 outline-none"/>
+                <input value={labeledPrice} onChange={(e)=>{setLabeledPrice(e.target.value)}} placeholder="Ex: Rs. 25,000" className="border-4 border-accent text-primary rounded-[10px] h-[50px] p-2 m-2 flex-1 outline-none"/>
             </div>
             <div className="w-[40%] h-[10%] flex flex-col">
                 <label className="font-bold text-white ml-2">Category</label>

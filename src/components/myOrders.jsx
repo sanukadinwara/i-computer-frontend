@@ -54,37 +54,40 @@ export default function MyOrdersPage(){
                     <LoadingAnimation />
                 </div>
             ) : (
-                <table className="min-w-[1100px] w-full text-sm relative">
-                    <thead className="sticky top-0 z-10 bg-white">
-                        <tr className="border-b border-secondary/10">
-                            <th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">Order ID</th>
-                            <th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">Customer Name</th>
-                            <th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">Email</th>
-                            <th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">Date</th>
-                            <th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">Total Amount</th>
-                            <th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">Status</th>
-                            <th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {orders.map((order) => (
-                            <tr key={order.orderId} className="border-b border-secondary/10 hover:bg-gray-200">
-                                <td className="px-5 py-3 text-center">{order.orderId}</td>
-                                <td className="px-5 py-3 text-center">{order.firstName + " " + order.lastName}</td>
-                                <td className="px-5 py-3 text-center">{order.email}</td>
-                                <td className="px-5 py-3 text-center">{new Date(order.date).toLocaleString()}</td>
-                                <td className="px-5 py-3 text-center">{getFormattedPrice(order.total)}</td>
-                                <td className="px-5 py-3 text-center">{order.status}</td>
-                                <td className="px-5 py-3 text-center">
-                                    <CustomerViewOrderInfoModal order={order}/>
-                                </td>
+                <div className="w-full overflow-x-auto">
+
+                    <table className="min-w-[1100px] w-full text-sm relative">
+                        <thead className="sticky top-0 z-10 bg-white">
+                            <tr className="border-b border-secondary/10">
+                                <th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">Order ID</th>
+                                <th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">Customer Name</th>
+                                <th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">Email</th>
+                                <th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">Date</th>
+                                <th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">Total Amount</th>
+                                <th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">Status</th>
+                                <th className="px-5 py-3 text-center text-xs font-semibold uppercase tracking-wide text-secondary/70">Actions</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {orders.map((order) => (
+                                <tr key={order.orderId} className="border-b border-secondary/10 hover:bg-gray-200">
+                                    <td className="px-5 py-3 text-center">{order.orderId}</td>
+                                    <td className="px-5 py-3 text-center">{order.firstName + " " + order.lastName}</td>
+                                    <td className="px-5 py-3 text-center">{order.email}</td>
+                                    <td className="px-5 py-3 text-center">{new Date(order.date).toLocaleString()}</td>
+                                    <td className="px-5 py-3 text-center">{getFormattedPrice(order.total)}</td>
+                                    <td className="px-5 py-3 text-center">{order.status}</td>
+                                    <td className="px-5 py-3 text-center">
+                                        <CustomerViewOrderInfoModal order={order}/>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             )}
             <div className="w-full absolute bottom-5 left-0 h-[50px] flex justify-center items-center">
-                <div className="w-[440px] h-full bg-white shadow-[0px_0px_15px_rgba(0,0,0,0.3)] rounded-full flex items-center justify-center px-2">
+                <div className="w-[420px] h-full bg-white shadow-[0px_0px_15px_rgba(0,0,0,0.3)] rounded-full flex items-center justify-center px-2">
                     
             <button className="bg-accent w-[90px] text-white p-2 rounded-full cursor-pointer hover:brightness-125 transition-all">
                 Previous
@@ -105,7 +108,7 @@ export default function MyOrdersPage(){
                             setPageNumber(1); 
                             setIsLoaded(false); 
                         }}
-                        className="ml-5 border border-secondary/20 rounded px-3 py-2 text-sm cursor-pointer">
+                        className="ml-3 border border-secondary/20 rounded px-3 py-2 text-sm cursor-pointer">
                         <option value={5}>5 per page</option>
                         <option value={10}>10 per page</option>
                         <option value={20}>20 per page</option>

@@ -57,7 +57,7 @@ export default function LoginPage(){
     }
 
     return(
-        <div className="w-full h-full bg-[url('/background.jpg')] bg-[length:100%_120%] bg-no-repeat bg-85%] flex justify-center items-center">
+        <div className="w-full min-h-screen bg-[url('/background.jpg')] bg-cover bg-center bg-no-repeat flex justify-center items-center relative">
             <div className="absolute inset-0 bg-black opacity-60"></div>
                 <div className="relative backdrop-blur-md w-[450px] h-[450px] shadow-2xl rounded-2xl flex flex-col justify-center">
                     <input type="email" placeholder="Email" onChange={

@@ -38,9 +38,11 @@ export default function ViewOrderInfoModal(props) {
 			</button>
 
 			{isVisible && (
-				<div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-					<div className="w-[600px] h-[650px] bg-white rounded-md relative">
-                        <button className="absolute w-10 h-10 text-red-600 text-2xl rounded-full hover:bg-red-600 hover:text-white cursor-pointer flex justify-center items-center right-[-30px] top-[-30px]" onClick={() => setIsVisible(false)}>
+				<div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                    <div className="w-full max-w-[600px] max-h-[70vh] bg-white rounded-md relative flex flex-col">
+                        <button className="absolute z-10 w-8 h-8 bg-white text-red-600 shadow-md text-xl rounded-full hover:bg-red-600 hover:text-white cursor-pointer flex justify-center items-center -right-2 -top-3" 
+                        onClick={() => setIsVisible(false)}
+                        >
                             <CgClose/>
                         </button>
 
@@ -91,8 +93,8 @@ export default function ViewOrderInfoModal(props) {
 
                             <div className="grid grid-cols-3 gap-4 items-center bg-white/10 p-4 rounded-lg">
                                 <div className="flex flex-col items-start w-full">
-                                    <p className="text-white/60 text-xs uppercase tracking-wider font-semibold mb-1">Total Amount</p>
-                                    <h1 className="text-lg font-bold text-white whitespace-nowrap">
+                                    <p className="text-white/60 text-xs uppercase tracking-wider font-semibold mb-1 pb-3">Total Amount</p>
+                                    <h1 className="text-md font-bold text-white whitespace-nowrap">
                                         {getFormattedPrice(order.total)}
                                     </h1>
                                 </div>

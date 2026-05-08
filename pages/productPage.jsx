@@ -23,7 +23,7 @@ export default function ProductPage() {
                 toast.error("Failed to fetch products.");
                 setLoading(false);
             });
-    }, [loading]);
+    }, [searchQuery]);
 
     return (
         <div className="w-full min-h-screen bg-primary p-10 flex flex-wrap justify-center items-start gap-8 relative p-[0px]">

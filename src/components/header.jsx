@@ -12,7 +12,7 @@ export default function Header(){
     return(
         <header className="w-full sticky top-0 bg-accent h-[100px] flex justify-center items-center relative z-[100]">
             <div className="h-full w-full lg:w-auto flex items-center absolute lg:left-5">
-                <GiHamburgerMenu onClick={()=> {setIsOpen(true)}} size={30} color="white" className="mr-8 lg:hidden cursor-pointer"/>
+                <GiHamburgerMenu onClick={()=> {setIsOpen(true)}} size={30} color="white" className="mr-8 lg:hidden cursor-pointer ml-3"/>
                 <img src="/logo.png" alt="logo" className="h-[100px] lg:h-[140px] object-contain" />
                 <h1 className="text-white text-md lg:text-3xl font-bold ml-1">Dawe Computers</h1>
             </div>
@@ -32,12 +32,12 @@ export default function Header(){
                     <div className="h-[100px] bg-accent w-full flex justify-start items-center px-5">
                         <img src="/logo.png" alt="Logo" className="h-[80px] lg:h-[100px]" />
                         <h1 className="text-white text-md lg:text-2xl font-bold ml-2">Dawe Computers</h1>
-                        <LuPanelLeftClose onClick={()=> {setIsOpen(false)}} size={30} color="white" className="ml-auto cursor-pointer"/>
+                        <LuPanelLeftClose onClick={()=> {setIsOpen(false)}} size={20} color="white" className="ml-auto cursor-pointer"/>
                     </div>
                     <div className="flex flex-col mt-5">
                         <a href="/" className="text-secondary font-semibold py-3 px-5 hover:bg-secondary/10">Home</a>
-                        <a href="/products" className="text-secondary font-semibold py-3 px-5 hover:bg-secondary/10">Products</a>
                         <a href="/about" className="text-secondary font-semibold py-3 px-5 hover:bg-secondary/10">About</a>
+                        <a href="/products" className="text-secondary font-semibold py-3 px-5 hover:bg-secondary/10">Products</a>
                         <a href="/contact" className="text-secondary font-semibold py-3 px-5 hover:bg-secondary/10">Contact</a>
                         <a href="/cart" className="text-secondary font-semibold py-3 px-5 hover:bg-secondary/10">Cart</a>
                         <div className="border-t border-secondary/20 my-5 bg-accent absolute bottom-0 w-[300px]">

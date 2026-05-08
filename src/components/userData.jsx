@@ -59,7 +59,7 @@ export default function UserData() {
                         </button>
 
                         {isDropdownOpen && (
-                            <div className="absolute top-14 right-0 w-[180px] bg-white rounded-xl shadow-2xl overflow-hidden z-50 flex flex-col border border-gray-200">
+                            <div className="absolute bottom-full mb-2 lg:bottom-auto lg:top-full lg:mb-0 lg:mt-2 center-0 w-[180px] bg-white rounded-xl shadow-2xl overflow-hidden z-50 flex flex-col border border-gray-200">
                                 {isAdmin && (
                                     <button onClick={() => window.location.href="/admin"} className="px-4 py-3 text-left text-secondary font-medium hover:bg-accent hover:text-white transition-colors cursor-pointer">
                                         Admin Panel

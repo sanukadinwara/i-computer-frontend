@@ -22,7 +22,7 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
                 
-                <div className="p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0f0f0f]/5 hover:-translate-y-2 transition-all duration-300 bg-white group">
+                <div className="p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0f0f0f]/5 hover:-translate-y-2 transition-all duration-300 bg-white group flex flex-col items-center md:items-start text-center md:text-left">
                     <div className="w-14 h-14 rounded-full bg-gradient-to-r from-[#E30B6F] to-[#8a00c4] flex justify-center items-center text-white text-2xl mb-6 shadow-md group-hover:scale-110 transition-transform">
                         <FaMicrochip/>
                     </div>
@@ -32,7 +32,7 @@ export default function AboutPage() {
                     </p>
                 </div>
 
-                <div className="p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0f0f0f]/5 hover:-translate-y-2 transition-all duration-300 bg-white group">
+                <div className="p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0f0f0f]/5 hover:-translate-y-2 transition-all duration-300 bg-white group flex flex-col items-center md:items-start text-center md:text-left">
                     <div className="w-14 h-14 rounded-full bg-gradient-to-r from-[#E30B6F] to-[#8a00c4] flex justify-center items-center text-white text-2xl mb-6 shadow-md group-hover:scale-110 transition-transform">
                         <FaGamepad/>
                     </div>
@@ -42,7 +42,7 @@ export default function AboutPage() {
                     </p>
                 </div>
 
-                <div className="p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0f0f0f]/5 hover:-translate-y-2 transition-all duration-300 bg-white group">
+                <div className="p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#0f0f0f]/5 hover:-translate-y-2 transition-all duration-300 bg-white group flex flex-col items-center md:items-start text-center md:text-left">
                     <div className="w-14 h-14 rounded-full bg-gradient-to-r from-[#E30B6F] to-[#8a00c4] flex justify-center items-center text-white text-2xl mb-6 shadow-md group-hover:scale-110 transition-transform">
                         <FaTools/>
                     </div>

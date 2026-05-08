@@ -32,10 +32,11 @@ export default function Cart(){
                     return (
                         <div key={index} className="w-full lg:w-[600px] lg:h-[150px] bg-white flex flex-row rounded-lg shadow overflow-hidden items-center">
                             <img className="h-[150px] aspect-square object-cover" src={cartItem.product.image[0]} alt={cartItem.product.name} />
-                            
-                            <div className="flex-1 flex flex-col justify-center text-left ml-3">
-                                <h1 className="text-md text-gray-500 font-medium">{cartItem.product.brand} {cartItem.product.model}</h1>
-                                <h2 className="text-xl font-bold leading-tight mt-1">{cartItem.product.name}</h2>
+
+                            <div className="flex-1 h-[150px] flex flex-col justify-between py-4 pr-4 ml-3 min-w-0">
+                                <div>
+                                    <h1 className="text-md text-gray-500 font-medium whitespace-nowrap">{cartItem.product.brand} {cartItem.product.model}</h1>
+                                    <h2 className="text-xl font-bold leading-tight mt-1 whitespace-nowrap">{cartItem.product.name}</h2>
                                 
                                 <div className="lg:w-[210px] h-[50px] border border-accent rounded-full flex overflow-hidden hidden justify-center lg:justify-between">
                                     <button 
@@ -66,10 +67,10 @@ export default function Cart(){
                                         <BiPlus />
                                     </button>
                                 </div>
+                                </div>
                             </div>
 
-                            <div className="w-[170px] h-full flex flex-col justify-center items-end pr-2">
-    
+                            <div className="w-[170px] h-full flex flex-col justify-end items-end pr-4 pt-22">
                                 {
                                     cartItem.product.labelledPrice > cartItem.product.price && (
                                         <span className="text-sm text-gray-500 line-through">
@@ -77,13 +78,9 @@ export default function Cart(){
                                         </span>
                                     )
                                 }
-                                <span className="text-sm text-secondary font-semibold">
-                                    {getFormattedPrice(cartItem.product.price)}
-                                </span>
                                 <span className="text-lg text-secondary font-bold">
                                     {getFormattedPrice(cartItem.product.price * cartItem.qty)}
                                 </span>
-
                             </div>
                         </div>
                     )

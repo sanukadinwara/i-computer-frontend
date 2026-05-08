@@ -63,8 +63,8 @@ export default function AdminProductsPage(){
                                             <td className="px-4 py-3 text-xs border-0">{item.productId}</td>
                                             <td className="px-4 py-3 text-xs border-0 whitespace-nowrap">{item.name}</td>
                                             <td className="px-4 py-3 text-xs border-0 flex-wrap">{item.description}</td>
-                                            <td className="px-4 py-3 text-xs font-semibold text-accent border-0">LKR {(item.price || 0).toFixed(2)}</td>
-                                            <td className="px-4 py-3 text-xs text-gray-600 border-0">LKR {(item.labeledPrice || 0).toFixed(2)}</td>
+                                            <td className="px-4 py-3 text-xs font-semibold text-accent border-0">Rs. {(item.price || 0).toFixed(2)}</td>
+                                            <td className="px-4 py-3 text-xs text-gray-600 border-0">Rs. {(item.labeledPrice || 0).toFixed(2)}</td>
                                             <td className="px-4 py-3 text-xs border-0 whitespace-nowrap">
                                                 <span className="px-3 py-1 rounded-full bg-gray-100 text-secondary text-xs font-medium">
                                                     {item.category || "Uncategorized"}

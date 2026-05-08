@@ -16,8 +16,8 @@ export default function Overview(){
     const [user, setUser] = useState(null);
 
     const getFormattedPrice = (price) => {
-        if (!price) return "LKR 0"; 
-        return "LKR " + price.toLocaleString();
+        if (!price) return "Rs. 0"; 
+        return "Rs. " + price.toLocaleString();
     };
 
     useEffect(() => {

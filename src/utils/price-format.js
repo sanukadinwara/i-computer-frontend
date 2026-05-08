@@ -9,6 +9,6 @@ export default function getFormattedPrice(price){
     if(isNaN(priceInNumber)){
         return "N/A"
     }else{
-        return "LKR " + priceInNumber.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        return "Rs. " + priceInNumber.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2})
     }
 }

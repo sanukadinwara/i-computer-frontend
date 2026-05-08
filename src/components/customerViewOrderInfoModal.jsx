@@ -14,9 +14,11 @@ export default function CustomerViewOrderInfoModal(props) {
             </button>
 
             {isVisible && (
-                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-                    <div className="w-[600px] h-[600px] bg-white rounded-md relative">
-                        <button className="absolute w-10 h-10 text-red-600 text-2xl rounded-full hover:bg-red-600 hover:text-white cursor-pointer flex justify-center items-center right-[-30px] top-[-30px]" onClick={() => setIsVisible(false)}>
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                    <div className="w-full max-w-[600px] max-h-[70vh] bg-white rounded-md relative flex flex-col">
+                        <button className="absolute z-10 w-8 h-8 bg-white text-red-600 shadow-md text-xl rounded-full hover:bg-red-600 hover:text-white cursor-pointer flex justify-center items-center -right-2 -top-3" 
+                        onClick={() => setIsVisible(false)}
+                        >
                             <CgClose/>
                         </button>
 

@@ -7,13 +7,13 @@ export default function OnSaleNow(){
             <ProductCard
                 name= "Macbook Air"
                 image= "https//picsum.photos/id/0/200/300"
-                price="LKR 250,000"
+                price="Rs. 250,000"
                 />
 
             <ProductCard
                 name= "iPhone"
                 image= "https//picsum.photos/id/3/200/300"
-                price="LKR 150,000"
+                price="Rs. 150,000"
                 />
         </div>
     )
